@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timer/screens/api_screen.dart';
-import 'package:timer/screens/set_timer_screen.dart';
 import 'package:timer/screens/timers.dart';
-import 'package:timer/utils/timer_list.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -27,7 +25,7 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>  TimersScreen()));
+                          builder: (context) =>  const TimersScreen()));
                 },
                 child: const Text("Timer Screen")),
           ],

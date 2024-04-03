@@ -87,7 +87,7 @@ class _SetTimerScreenState extends State<SetTimerScreen>
                         allTime: number));
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return TimersScreen(
+                      return const TimersScreen(
                       );
                     }));
                   },

@@ -26,7 +26,7 @@ class _TimersScreenState extends State<TimersScreen> {
           IconButton(
               onPressed: () {
                 showModalBottomSheet(
-                  backgroundColor: Colors.white,
+                    backgroundColor: Colors.white,
                     context: context,
                     builder: (context) {
                       return Column(
@@ -86,9 +86,7 @@ class _TimersScreenState extends State<TimersScreen> {
                                             ? textEditingController.text
                                             : "Timer",
                                         allTime: number));
-                                    setState(() {
-
-                                    });
+                                    setState(() {});
                                     Navigator.pop(context);
                                   },
                                   child: Container(
@@ -160,9 +158,9 @@ class _TimersScreenState extends State<TimersScreen> {
                       );
                     });
               },
-              icon: Icon(Icons.add))
+              icon: const Icon(Icons.add))
         ],
-        title: Text(
+        title: const Text(
           "Timers",
           style: TextStyle(
               color: Colors.black, fontSize: 32, fontWeight: FontWeight.w800),
@@ -176,6 +174,33 @@ class _TimersScreenState extends State<TimersScreen> {
           ),
           ...List.generate(list.length, (index) {
             return ListTile(
+              onLongPress: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text("Are you sure delete this timer"),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Cancel")),
+                          TextButton(
+                              onPressed: () {
+                                list.remove(list[index]);
+                                setState(() {
+                                  Navigator.pop(context);
+                                });
+                              },
+                              child: const Text(
+                                "Yes",
+                                style: TextStyle(color: Colors.red),
+                              ))
+                        ],
+                      );
+                    });
+              },
               leading: SizedBox(
                 width: 50,
                 height: 50,
