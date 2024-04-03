@@ -33,7 +33,6 @@ class _SetTimerScreenState extends State<SetTimerScreen>
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           CupertinoTimerPicker(
             onTimerDurationChanged: (s) {
               number = s.inSeconds;
@@ -77,7 +76,6 @@ class _SetTimerScreenState extends State<SetTimerScreen>
                   splashColor: Colors.green.withOpacity(.2),
                   borderRadius: BorderRadius.circular(100),
                   onTap: () {
-                    context.read<TimerCubit>().setData(seconds: number);
                     context.read<TimerCubit>().counting(number);
                     list.add(TimerModel(
                         seconds: number,
@@ -87,8 +85,7 @@ class _SetTimerScreenState extends State<SetTimerScreen>
                         allTime: number));
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return const TimersScreen(
-                      );
+                      return const TimersScreen();
                     }));
                   },
                   child: Container(

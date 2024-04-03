@@ -15,6 +15,10 @@ class TimersScreen extends StatefulWidget {
 }
 
 class _TimersScreenState extends State<TimersScreen> {
+  String hour = "";
+  String minute = "";
+  String second = "";
+
   int number = 0;
   final TextEditingController textEditingController = TextEditingController();
 
@@ -75,9 +79,7 @@ class _TimersScreenState extends State<TimersScreen> {
                                   splashColor: Colors.green.withOpacity(.2),
                                   borderRadius: BorderRadius.circular(100),
                                   onTap: () {
-                                    context
-                                        .read<TimerCubit>()
-                                        .setData(seconds: number);
+                                   // context.read<TimerCubit>().setData(seconds: number);
                                     context.read<TimerCubit>().counting(number);
                                     list.add(TimerModel(
                                         seconds: number,
@@ -170,10 +172,14 @@ class _TimersScreenState extends State<TimersScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.only(left: 26, bottom: 54),
+            padding: EdgeInsets.only(left: 26, bottom: 0),
           ),
           ...List.generate(list.length, (index) {
+            hour = "${(list[index].seconds / 3600).floor()} hrs";
+            minute = "${(list[index].seconds  / 60).floor()} min";
+            second = "${list[index].seconds % 60} secs";
             return ListTile(
+              subtitle: Text("${hour},$minute,$second"),
               onLongPress: () {
                 showDialog(
                     context: context,

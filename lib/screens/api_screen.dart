@@ -38,18 +38,22 @@ class _ApiScreenState extends State<ApiScreen> {
             return ListTile(
               onTap: () {},
               subtitle: Text(ls[0].sender.location),
-              leading: ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: CachedNetworkImage(
-                  imageUrl: ls[0].sender.brandImage,
-                  errorWidget: (context, url, error) => CachedNetworkImage(
-                      imageUrl:
-                          "https://bekey.io/static/images/flutter/flutter-logo.png"),
-                  height: 50,
-                  width: 50,
-                  fit: BoxFit.cover,
-                ),
+              trailing: Column(
+                children: [
+                  Text(
+                    ls[0].amount.toString(),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                  ),
+                  Text(
+                    list[index].transferDate,
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                ],
               ),
+              leading: SizedBox(
+                  width: 60,
+                  height: 60,
+                  child: Image.network(ls[0].sender.brandImage)),
               title: Text(ls[0].sender.name),
             );
           })
